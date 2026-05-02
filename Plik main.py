@@ -1,8 +1,13 @@
-
 import flet as ft
 
 def main(page: ft.Page):
-    page.add(ft.Text("SIEDLIK SYSTEM DZIAŁA!"))
+    page.theme_mode = ft.ThemeMode.DARK
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.add(
+        ft.Container(
+            content=ft.Text("SIEDLIK SYSTEM: AKTYWNY", size=30, weight="bold"),
+            alignment=ft.alignment.center
+        )
+    )
 
-if __name__ == "__main__":
-    ft.app(target=main)
+ft.app(target=main)
