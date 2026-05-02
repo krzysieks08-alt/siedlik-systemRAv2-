@@ -6,17 +6,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
       
-      - name: Install Flet and Build APK
+      - name: Install Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          
+      - name: Install Flet
+        run: pip install flet
+
+      - name: Build APK
         run: |
-          pip install flet
-          flet build apk --verbose
+          flet build apk --no-interactive
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: SiedlikSystem-APK
+          name: SiedlikSystem-Final
           path: build/apk/*.apk
